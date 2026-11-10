@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LeetCode Sidekick Settings</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">LEETCODE SIDEKICK</p>
+      <h1>Sidekick settings</h1>
+      <p class="intro">Configure Mistral AI for your coding conversations.</p>
+
+      <section class="settings-section" aria-labelledby="mistral-heading">
+        <h2 id="mistral-heading">Mistral AI</h2>
+        <p class="section-copy">Your key is stored in this browser's Chrome storage and sent directly to Mistral for AI requests.</p>
+        <label for="mistral-api-key">Mistral API key</label>
+        <input id="mistral-api-key" type="password" autocomplete="new-password" placeholder="Paste your Mistral API key">
+        <div class="buttons">
+          <button id="save-mistral-key" type="button">Save key</button>
+          <button id="test-mistral-key" class="secondary" type="button">Test key</button>
+        </div>
+        <button id="remove-mistral-key" class="secondary" type="button">Remove key</button>
+        <p id="mistral-status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="settings-section" aria-labelledby="storage-heading">
+        <h2 id="storage-heading">Chat history</h2>
+        <p class="section-copy">Chat messages and their Mistral conversation IDs are stored in this browser and are not synced to other devices.</p>
+      </section>
+
+      <aside>
+        Your Mistral API key and local chat history are available to anyone with access to this Chrome profile.
+      </aside>
+    </main>
+    <script src="mistral.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

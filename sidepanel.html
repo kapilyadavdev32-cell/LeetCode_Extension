@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LeetCode Sidekick</title>
+    <link rel="stylesheet" href="vendor/katex/dist/katex.min.css">
+    <link rel="stylesheet" href="vendor/highlight.js/github-dark.min.css">
+    <link rel="stylesheet" href="sidepanel.css">
+    <script src="vendor/markdown-it/markdown-it.min.js"></script>
+    <script src="vendor/katex/dist/katex.min.js"></script>
+    <script src="vendor/texmath/texmath.js"></script>
+    <script src="vendor/highlight.js/highlight.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">LEETCODE SIDEKICK</p>
+        <h1>Problem-solving chat</h1>
+      </div>
+      <div class="top-actions">
+        <button id="refresh" class="icon-button" type="button" aria-label="Refresh problem" title="Refresh problem">↻</button>
+        <button id="new-chat" class="new-chat-button" type="button">New chat</button>
+      </div>
+    </header>
+
+    <section class="chat-controls">
+      <label class="chat-picker">
+        <span class="eyebrow">SAVED CHATS</span>
+        <select id="chat-history" aria-label="Previous chats">
+          <option value="">Previous chats</option>
+        </select>
+      </label>
+      <div class="chat-actions">
+        <button id="forget-code" type="button" disabled>Forget code</button>
+        <button id="clear-chat" type="button" disabled>Clear</button>
+        <button id="delete-chat" type="button" disabled>Delete</button>
+      </div>
+    </section>
+
+    <section class="problem-card" aria-live="polite">
+      <div class="problem-title-row">
+        <p class="eyebrow">CURRENT PROBLEM</p>
+        <a id="problem-link" href="#" target="_blank" rel="noreferrer" hidden>Open ↗</a>
+      </div>
+      <p id="problem-title">Detecting current problem...</p>
+      <p id="problem-language" class="muted"></p>
+    </section>
+
+    <main id="messages" class="messages" aria-live="polite" aria-label="Conversation"></main>
+
+    <section class="quick-actions" aria-label="Coding assistant shortcuts">
+      <button type="button" data-prompt="Review my current code for correctness, edge cases, and readability." data-mode="code-review">Code Review</button>
+      <button type="button" data-prompt="Suggest optimizations for my current code and explain the tradeoffs." data-mode="optimization">Optimize</button>
+      <button type="button" data-prompt="Explain the visible test case or submission result." data-mode="test-case">Test case</button>
+      <button type="button" data-prompt="Dry-run my current code on this example: " data-mode="dry-run">Dry run</button>
+      <button type="button" data-prompt="Compare the best approaches for this problem." data-mode="approach-comparison">Compare</button>
+      <button type="button" data-prompt="Explain this concept: " data-mode="concept">Concept</button>
+      <button type="button" data-prompt="Start an interview-style practice session for this problem." data-mode="interview">Interview</button>
+    </section>
+
+    <p id="loading-indicator" class="loading-indicator" aria-live="polite" hidden>Sidekick is working...</p>
+    <p id="status" class="status" role="status"></p>
+    <form id="chat-form" class="composer">
+      <div class="selectors">
+        <label>
+          <span>AI mode</span>
+          <select id="mode">
+            <option value="custom">Custom Chat</option>
+            <option value="debug">Debug Code</option>
+            <option value="hint">Hint on Code</option>
+            <option value="solution">Full Solution</option>
+            <option value="complexity">Complexity Analysis</option>
+            <optgroup label="Additional tools">
+              <option value="code-review">Code Review</option>
+              <option value="optimization">Optimization Suggestions</option>
+              <option value="test-case">Test Case Explanation</option>
+              <option value="dry-run">Dry Run</option>
+              <option value="approach-comparison">Approach Comparison</option>
+              <option value="concept">Concept Explainer</option>
+              <option value="interview">Interview Mode</option>
+            </optgroup>
+          </select>
+        </label>
+        <label>
+          <span>Code context</span>
+          <select id="code-context">
+            <option value="updated">Send Updated Code</option>
+            <option value="previous">Previously Shared Code</option>
+            <option value="none">Don't Include Code</option>
+          </select>
+        </label>
+      </div>
+      <div class="input-row">
+        <textarea id="message-input" rows="2" placeholder="Ask a coding question..." aria-label="Your message" required></textarea>
+        <button id="send-button" class="send-button" type="submit" disabled>Send</button>
+      </div>
+      <p class="composer-note">Enter to send · Shift+Enter for a new line</p>
+    </form>
+
+    <footer>
+      <span>AI responses can be incorrect. Verify suggested code.</span>
+      <a href="options.html" target="_blank">Settings</a>
+    </footer>
+    <script src="chat-store.js"></script>
+    <script src="mistral.js"></script>
+    <script src="sidepanel.js"></script>
+  </body>
+</html>

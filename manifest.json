@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode Sidekick",
+  "version": "1.0.0",
+  "description": "Persistent AI coding chat for LeetCode problems.",
+  "minimum_chrome_version": "116",
+  "permissions": ["storage", "sidePanel", "scripting"],
+  "host_permissions": [
+    "https://leetcode.com/*",
+    "https://www.leetcode.com/*",
+    "https://api.mistral.ai/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/*", "https://www.leetcode.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Open LeetCode Sidekick"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "options_page": "options.html"
+}
